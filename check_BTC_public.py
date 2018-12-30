@@ -18,11 +18,11 @@ data_log_time = [0]
 
 #first_line_data = "1\n" # for test only
 while True:
-    data = urllib2.urlopen("https://devel.novacisko.cz/trading/position")
+    data = urllib2.urlopen("https://devel.novacisko.cz/trading/position.html")
     first_line_data = data.readline()
     # first_line_data += "-1\n" # for test only
-    first_line_data = first_line_data.replace("-1\n","SHORT")
-    first_line_data = first_line_data.replace("1\n","LONG")
+    first_line_data = first_line_data.replace("<html><head><title>Position</title></head><body><p>Position:<strong id=\"pos\">-1</strong></p></body></html>\n","SHORT")
+    first_line_data = first_line_data.replace("<html><head><title>Position</title></head><body><p>Position:<strong id=\"pos\">1</strong></p></body></html>\n","LONG")
     print "Last data:"
     print first_line_data
     if (first_line_data != data_log[-1]):
